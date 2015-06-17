@@ -2,13 +2,16 @@ var express = require('express')
 var morgan = require('morgan')
 var swig = require('swig')
 var routes = require('./routes/')
+var bodyParser = require('body-parser');
 
 var app = express()
 
 swig.setDefaults({cache:false})
 
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+app.use('/', routes(io))
 app.use(morgan('dev'))
-app.use('/', routes)
 app.use(express.static(__dirname + '/public'))
 
 app.engine('html', swig.renderFile)
@@ -17,6 +20,6 @@ app.set('views', './views')
 
 
 
-app.listen(3000, function(){
-  console.log('server listening')
-})
+var socketio = require('socket.io');
+var server = app.listen(3000);
+var io = socketio.listen(server);
