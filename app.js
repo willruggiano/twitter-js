@@ -10,6 +10,9 @@ swig.setDefaults({cache:false})
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+var socketio = require('socket.io');
+var server = app.listen(3000);
+var io = socketio.listen(server);
 app.use('/', routes(io))
 app.use(morgan('dev'))
 app.use(express.static(__dirname + '/public'))
@@ -19,7 +22,3 @@ app.set('view engine', 'html')
 app.set('views', './views')
 
 
-
-var socketio = require('socket.io');
-var server = app.listen(3000);
-var io = socketio.listen(server);

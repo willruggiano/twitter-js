@@ -26,12 +26,13 @@
     <div class="col-md-9">
       <p style = 'font-weight: bold; font-size: x-large'>All Tweets</p>
       <!-- display tweets here -->
+      <div id= 'tweetlist'>
       {% for tweet in tweets %}
         <p id = 'name'><a href="/users/{{tweet.name}}">{{tweet.name}}</a></p>
         <p id = 'tweet'>{{tweet.text}} <a href="/users/{{tweet.name}}/tweets/{{tweet.tweetId}}">Check out this tweet</a></p>
 
       {% endfor %}
-
+      </div>
     </div>
   </div>
 

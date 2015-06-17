@@ -29,6 +29,7 @@ router.post('/submit', function(req, res) {
   var name = req.body.name;
   var text = req.body.text;
   tweetBank.add(name, text);
+  io.sockets.emit('new_tweet', {name: name, text: text});
   res.redirect('/');
 });
 
