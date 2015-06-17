@@ -9,6 +9,7 @@ swig.setDefaults({cache:false})
 
 app.use(morgan('dev'))
 app.use('/', routes)
+app.use(express.static(__dirname + '/public'))
 
 app.engine('html', swig.renderFile)
 app.set('view engine', 'html')
