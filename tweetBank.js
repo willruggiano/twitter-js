@@ -1,9 +1,11 @@
 var _ = require('underscore')
 
 var data = []
+var tweetId = 1
 
 var add = function(name, text){
-  data.push({name:name, text:text})
+  data.push({name:name, text:text, tweetId: tweetId})
+  tweetId++
 }
 
 var list = function(){
@@ -21,11 +23,12 @@ var randArrayEl = function(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 };
 
-var getFakeName = function() {
-  var fakeFirsts = ['Nimit', 'Dave', 'Will', 'Charlotte', 'Jacob','Ethan','Sophia','Emma','Madison'];
-  var fakeLasts = ["Alley", 'Stacky', 'Fullstackerson', 'Nerd', 'Ashby', 'Gatsby', 'Hazelnut', 'Cookie', 'Tilde', 'Dash'];
-  return randArrayEl(fakeFirsts) + " " + randArrayEl(fakeLasts);
-};
+var getName = function() {
+  var names = ['Nimit Alley', 'Dave Stacky', 'Will Fullstackerson', 'Charlotte Nerd', 'Jacob Ashby', 'Ethan Gatsby',
+               'Sophia Hazelnut', 'Emma Cookie', 'Madison Tilde', 'Kelsey Dash']
+
+  return randArrayEl(names)
+}
 
 var getFakeTweet = function() {
   var awesome_adj = ['awesome','breathtaking','amazing','sexy','sweet','cool','wonderful','mindblowing'];
@@ -33,5 +36,6 @@ var getFakeTweet = function() {
 };
 
 for(var i=0; i<10; i++) {
-  module.exports.add( getFakeName(), getFakeTweet() );
+  module.exports.add( getName(), getFakeTweet() );
+  console.log(data)
 }
